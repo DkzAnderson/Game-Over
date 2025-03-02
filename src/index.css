@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+
+    /* Fuentes */
+    --font-roboto: "Roboto", serif;
+    /* Colores */
+    --color-st: black;
+    --color-nd: #181818;
+    --color-rd: #0cf7d8;
+    --color-th: #9200ff;
+}  
+
+
+.product-cart-1{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    cursor: pointer;
+    @apply p-2 gap-x-2 rounded
+}
+
+
+.product-card-2{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 60% 35%;
+    row-gap: 4px;
+    flex-direction: column;
+    @apply rounded-lg p-2
+}
+
+.cart-shop-item{
+    display: grid;
+    grid-template-columns: 30% 70%;
+
+    .data-box{
+        display: grid;
+        grid-template-rows: 20% 40% 40%;
+    }
+
+    @apply rounded p-2
+}
