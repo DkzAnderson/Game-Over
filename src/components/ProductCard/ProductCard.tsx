@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import '../../index.css'
+import './ProductCard.css'
 import { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner/Spinner';
 import { PowerSource } from '../../types/powerSource';
@@ -19,28 +20,28 @@ export const ProductCard: React.FC<Item> = ({data,list}) => {
     const [imageLoad,setImageLoad] = useState(false);
 
     const listStyle = {
-        main: 'w-full h-36',
-        content: 'size-full product-cart-1 bg-nd flex flex-col hover:shadow-[0px_0px_8px_1px] hover:scale-95 duration-300 hover:shadow-rd',
-        imageBox: 'w-full h-32 bg-white overlow-hidden rounded p-1 flex items-center justify-center',
+        main: 'w-full h-32',
+        content: 'size-full product-cart-1 p-2 bg-nd flex flex-col hover:shadow-[0px_0px_8px_1px] hover:scale-95 duration-300 hover:shadow-rd',
+        imageBox: 'product-image rounded bg-white size-full max-h-28 overlow-hidden rounded p-1 flex items-center justify-center',
         image: 'size-full object-contain',
-        dataBox: 'flex flex-col p-2 justify-between',
+        dataBox: 'flex flex-col pt-2 pl-2 justify-between',
         titleBox: 'flex flex-col',
         brand: 'text-sm text-gray-400',
         title: 'text-white font-bold',
-        price: 'text-rd text-end font-bold text-lg',
+        price: 'text-rd text-end font-bold text-lg mr-2',
         priceAfterDiscount: '',
         offer: '',
     }
 
     const mosaicStyle ={
-        main: 'w-full h-80',
-        content: 'size-full product-card-2 relative bg-nd rounded-lg p-2',
-        imageBox: 'size-full overflow-hidden rounded p-1 bg-white flex items-center justify-center',
+        main: 'w-full h-64',
+        content: 'size-full product-card-2 relative bg-nd rounded-lg p-1',
+        imageBox: 'size-full product-image bg-white overflow-hidden rounded flex items-center justify-center',
         image: 'size-full object-contain',
         dataBox: 'flex flex-col justify-between',
         titleBox: 'flex flex-col overflow-hidden max-h-20',
         brand:'font-bold text-sm',
-        title: 'max-w-full text-white text-lg font-bold',
+        title: 'max-w-full text-white text-lg font-bold leading-6 overflow-hidden max-h-12',
         offer: {
             main: '',
             txt: ''
@@ -55,6 +56,8 @@ export const ProductCard: React.FC<Item> = ({data,list}) => {
         list : 'w-full h-36 p-4 flex items-center justify-center',
         mosaic: 'w-full h-80 p-4 flex items-center justify-center'
     }
+
+
 
     useEffect(()=>{
         setLoading(false)

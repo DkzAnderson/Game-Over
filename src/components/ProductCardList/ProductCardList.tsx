@@ -1,7 +1,7 @@
 import { ProductCard } from "../ProductCard/ProductCard"
 import { LuLayoutList } from "react-icons/lu";
 import { BiSolidCategory } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomSelect from "./CustomSelect";
 import { MotherBoard } from "../../types/motherBoard";
 import { PowerSource } from "../../types/powerSource";
@@ -89,6 +89,12 @@ export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
         }
     ]
 
+
+
+    useEffect(()=>{
+        setTimeout(()=>setLoading(false),1000)
+    },[])
+
     if(loading){
         return(
             <div className={styles.main}>
@@ -122,7 +128,7 @@ export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
                 </div>
     
                 <div className="w-full min-h-[70vh] flex items-center justify-center">
-                    <span className="scale-150">
+                    <span className="">
                         <Spinner/>
                     </span>
 
@@ -166,7 +172,7 @@ export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
                 <ul className={styles.list}>
                     {sortedData.map((product, i) => (
                         <li key={i}
-                            className={isAList ? 'h-80' : 'h-36' + ' transition-all linear duration-500'}
+                            className={' transition-all linear duration-500'}
                         >
                             <ProductCard
                                 data={product}

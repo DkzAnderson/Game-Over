@@ -41,8 +41,8 @@ const CategoryList: React.FC<categoryProps> = ({ data, closeMenu, menuState }) =
     const styles = {
         main: "w-full flex flex-col",
         list: "grid grid-cols-[88%_12%] h-20 items-center",
-        txts: "text-lg text-white text-start ml-4",
-        arrow: `text-rd text-3xl ${isOpen ? "-rotate-90 mb-4" : "rotate-90 mt-4"} duration-500`,
+        txts: "text-white text-start ml-4",
+        arrow: `text-rd text-2xl ${isOpen ? "-rotate-90 mb-4" : "rotate-90 mt-4"} duration-500`,
         dropdown: `flex flex-col gap-2 overflow-hidden transition-[max-height] duration-500 ease-in-out`,
     };
 
@@ -122,13 +122,13 @@ export const NavBar = () => {
     const styles = {
         main: `fixed z-50 w-full top-0 h-[10vh] bg-black shadow-[0px_0px_8px_2px] shadow-[#0cf7d8]`,
         content: {
-            main: 'flex size-full items-center justify-between p-2',
+            main: 'grid grid-cols-[30%_40%_30%] size-full items-center p-2',
             menuBtn: `flex items-center justify-center w-12 text-5xl text-rd`,
-            logoBox: 'h-full',
+            logoBox: 'h-full w-full',
             logo: 'size-full object-contain',
-            rightBox: 'flex gap-2',
-            searchBtn: `text-3xl text-rd`,
-            cartBtn: `text-3xl text-rd `
+            rightBox: 'flex justify-end items-center size-full',
+            searchBtn: `text-3xl text-rd flex items-center justify-center size-12 `,
+            cartBtn: `text-3xl text-rd flex items-center justify-center size-12  `
         },
 
         menuBox: {
@@ -147,8 +147,8 @@ export const NavBar = () => {
                 main: 'flex flex-col w-full pt-20 min-h-screen',
                 header: 'w-full pl-4 flex flex-col border-b border-rd',
                 list: 'flex flex-col max-h-[60vh] border-b border-rd overflow-auto',
-                items: 'grid grid-cols-[12%_76%_12%] h-16 items-center',
-                txts: 'text-lg text-white h-20 flex items-center',
+                items:'grid grid-cols-[12%_76%_12%] h-16 items-center',
+                txts: 'text-white h-20 flex items-center',
             }
         },
 
@@ -164,7 +164,6 @@ export const NavBar = () => {
             headerBtn: 'text-5xl text-rd'
 
         }
-
 
     }
   

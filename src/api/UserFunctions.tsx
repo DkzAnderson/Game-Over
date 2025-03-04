@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { Alert } from "../../Alerts";
+import { Alert } from "../Alerts";
 
 import { 
     onAuthStateChanged , 

@@ -9,8 +9,8 @@ import { CartProvider } from './contexts/CartContext.tsx'
 import { RouterProvider, createHashRouter } from 'react-router-dom'; // Cambiado a createHashRouter
 import { ErrorPage } from './components/ErrorPage/ErrorPage.tsx'
 import { ProductDetail } from './components/ProductDetail/ProductDetail.tsx';
-import { Home } from './pages/home.tsx';
-import { List } from './pages/list.tsx';
+import { Home } from './pages/Home.tsx';
+import { Lista } from './pages/Lista.tsx';
 
 
 
@@ -76,6 +76,8 @@ ecommerce/
 
 
 
+
+
 const router = createHashRouter([
   {
     path: '/',
@@ -88,15 +90,15 @@ const router = createHashRouter([
       },
       {
         path: '/home',
-        element: ''//home
+        element: <Home/>
       },
       {
         path:'/products/:category',
-        element: <List/>,
+        element: <Lista/>,
       },
       {
         path:'/products/:category/:brand',
-        element: <List/>,
+        element: <Lista/>,
       },
       {
         path: '/details/:category',

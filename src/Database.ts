@@ -415,7 +415,7 @@ export const Fuentes = [
             'TAMAÑO DE VENTILADOR - 92mm',
             'RENDIMIENTO - 2'
         ],
-        price: 0,
+        price: 50,
         brand: 'EVGA'
     }),
 
@@ -466,13 +466,11 @@ export const Fuentes = [
         title: 'EVGA SuperNOVA 1000G XC, 80 Plus Gold 1000W ',
         fullTitle: 'EVGA SuperNOVA 1000G XC ATX3.0 & PCIE 5, 80 Plus Gold Certified 1000W, 12VHPWR, Fully Modular, ECO MODE with FDB Fan, 100% Japanese Capacitors, Compact 150mm Size, Power Supply 520-5G-1000-K1',
         images: [
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
+            "https://i.postimg.cc/90QNgBWs/0.jpg",
+            "https://i.postimg.cc/gJDTK7Pv/1.jpg",
+            "https://i.postimg.cc/QCYY2WCC/2.jpg",
+            "https://i.postimg.cc/RF9YKB2S/3.jpg",
+            "https://i.postimg.cc/ryfH07jT/4.jpg"
         ],
         description: [
             'EFICIENCIA - GOLD',

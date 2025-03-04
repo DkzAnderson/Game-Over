@@ -37,7 +37,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placehol
         </h1>
       </div>
       {isOpen && (
-        <ul className="absolute z-10 top-[98%] sm:top-[102%] w-full bg-st border rounded-lg overflow-hidden">
+        <ul className="absolute z-10 top-[109%] sm:top-[102%] w-full bg-st border rounded-lg overflow-hidden">
           {options.map((option) => (
             <li
               key={option.value}

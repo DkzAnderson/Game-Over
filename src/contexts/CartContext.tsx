@@ -1,5 +1,4 @@
-// src/contexts/CartContext.tsx
-import { productProps } from '../Database';
+import { productProps } from '../types/product';
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { toast } from 'react-toastify';
 

@@ -9,7 +9,7 @@ import { GPUs } from '../Database';
 import { Fuentes } from '../Database';
 import { ProductCardList } from "../components/ProductCardList/ProductCardList";
 
-export const List = () => {
+export const Lista = () => {
 
     const { category, brand } = useParams();
     const [loading, setLoading] = useState(true);

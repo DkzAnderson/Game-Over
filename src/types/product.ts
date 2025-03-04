@@ -57,4 +57,19 @@ export class Product {
         }
     }
 
+    toFirebase(){
+        return{
+            title: this.title,
+            fullTitle: this.fullTitle,
+            category: this.category ,
+            images: this.images,
+            price: this.price ,
+            description: this.description,
+            brand: this.brand,
+            offer: this.offer,
+            discount : this.discount,
+            quantity :this.quantity,
+        }
+    }
+
 }

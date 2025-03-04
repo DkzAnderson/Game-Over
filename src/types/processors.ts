@@ -2,7 +2,7 @@ import { Product, productProps } from "./product";
 
 
 
-export class Processors extends Product {
+export class Processor extends Product {
     constructor({
         title, fullTitle, description,
         brand,images, price

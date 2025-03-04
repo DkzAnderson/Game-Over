@@ -41,7 +41,7 @@ export const CartShop = () => {
         },
 
         emptyCartBox: {
-            main: 'size-full min-h-96 flex flex-col items-center justify-center text-white',
+            main: 'size-full min-h-[85vh] flex flex-col items-center justify-center text-white p-4',
             titleBox: 'flex gap-2 font-bold',
             title: 'text-2xl',
             icon: 'text-3xl',
