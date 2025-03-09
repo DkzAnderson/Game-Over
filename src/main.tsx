@@ -97,11 +97,11 @@ const router = createHashRouter([
         element: <Home/>
       },
       {
-        path:'/products/:category',
+        path:'/products/:category/:page',
         element: <Lista/>,
       },
       {
-        path:'/products/:category/:brand',
+        path:'/products/:category/:brand/:page',
         element: <Lista/>,
       },
       {

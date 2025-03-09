@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { HiArrowsUpDown } from "react-icons/hi2";
+import { fetchOrderProps } from '../../services/productService';
 
 
 
 interface Option {
-  value: string;
+  value: fetchOrderProps;
   label: string;
 }
 
 interface CustomSelectProps {
   options: Option[];
-  onChange: (value: string) => void;
+  onChange: (value: fetchOrderProps) => void;
   placeholder?: string;
 }
 
 
-const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placeholder = 'Ordenar...' }) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placeholder = 'Nombre, creciente' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
@@ -38,9 +39,9 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placehol
       </div>
       {isOpen && (
         <ul className="absolute z-10 top-[109%] sm:top-[102%] w-full bg-st border rounded-lg overflow-hidden">
-          {options.map((option) => (
+          {options.map((option,i) => (
             <li
-              key={option.value}
+              key={i}
               className="px-2 py-2 group hover:bg-interaction cursor-pointer"
               onClick={() => handleOptionClick(option)}
             >

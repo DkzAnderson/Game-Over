@@ -1,4 +1,9 @@
-import { collection, getDocs, setDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { 
+    collection, getDocs, setDoc, doc, 
+    updateDoc, deleteDoc , query,
+    orderBy, limit, startAfter,
+    where
+} from "firebase/firestore";
 import { db } from "../config/firebase";
 import { GPU } from "../types/gpu";
 import { MotherBoard } from "../types/motherBoard";
@@ -6,7 +11,11 @@ import { Processor } from "../types/processors";
 import { PowerSource } from "../types/powerSource";
 import { RamMemories } from "../types/ramMemories";
 
-let lastVisible = null;
+
+export interface fetchOrderProps {
+    type: 'price' | 'title' ;
+    order: 'asc' | 'desc';
+}
 
 // Referencia a la colección de productos
 const productCollection = (col: string)=> collection(db,col);
@@ -35,8 +44,7 @@ function convertProductFromFirebase(data: any){
             break;
     }
 }
-
-//devuelve el nombre del documento según la categoría del producto
+//devuelve el nombre del dcumento según la categoría del producto
 function getProductType(product: GPU | MotherBoard | Processor | PowerSource | RamMemories){
     let productType: string = "";
     // Evalúa el tipo de producto
@@ -48,26 +56,88 @@ function getProductType(product: GPU | MotherBoard | Processor | PowerSource | R
 
     return productType;
 }
-
 // Funciones para manejar los productos
-export const getProducts = async (productType: string,productsPerPage:number = 20) => {
-    let products: Array<MotherBoard | GPU | PowerSource | Processor | RamMemories> = []
+export const getProductsCount = async (productType: string, brand?: string) => {
+    let productRef = collection(db, productType); // Aseguramos que `db` es el Firestore instance
 
-    const querySnapshot = await getDocs(productCollection(productType));
+    // Creamos la consulta base con el filtro por marca si está presente
+    let productQuery;
+    if (brand) {
+        productQuery = query(productRef, where('brand', '==', brand));
+    } else {
+        productQuery = productRef;
+    }
+
+    const querySnapshot = await getDocs(productQuery);
+    return querySnapshot.size; // Utilizamos `size` para obtener el conteo total de documentos
+};
+
+export const getProducts = async (
+    productType: string,
+    order: { type: string, order: 'asc' | 'desc' },
+    productsPerPage: number = 20,
+    startAfterDoc: any = null,
+    brand?: string
+) => {
+    let products: Array<MotherBoard | GPU | PowerSource | Processor | RamMemories> = [];
+
+    // Asegúrate de tener la referencia correcta a la colección
+    let productRef = collection(db, productType);
+
+    // Creamos la consulta base con los parámetros de orden y límite
+    let productQuery = query(
+        productRef,
+        orderBy(order.type, order.order),
+        limit(productsPerPage)
+    );
+
+    // Agregar el filtro por marca si está presente
+    if (brand) {
+        productQuery = query(
+            productRef,
+            where('brand', '==', brand),
+            orderBy(order.type, order.order),
+            limit(productsPerPage)
+        );
+    }
+
+    // Añadimos el cursor para la paginación si se proporciona y si el `brand` no está presente
+    if (startAfterDoc && !brand) {
+        productQuery = query(
+            productRef,
+            orderBy(order.type, order.order),
+            startAfter(startAfterDoc),
+            limit(productsPerPage)
+        );
+    }
+
+    // Añadimos el cursor para la paginación si se proporciona y si el `brand` está presente
+    if (startAfterDoc && brand) {
+        productQuery = query(
+            productRef,
+            where('brand', '==', brand),
+            orderBy(order.type, order.order),
+            startAfter(startAfterDoc),
+            limit(productsPerPage)
+        );
+    }
+
+    const querySnapshot = await getDocs(productQuery);
+
     // Obtenemos un arreglo con los resultados
     const results: any[] = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    // Retorna un arreglo con productos de la coleccion seleccionada
-    // revisamos que el resultado no sea undefined / array vacio
-    if(results != undefined && results.length > 0 ){
-        //iteramos , convertimos y agregamos los productos
+
+    // Verificamos que el resultado no sea undefined / array vacío
+    if (results && results.length > 0) {
+        // Iteramos, convertimos y agregamos los productos
         results.forEach(element => {
             const convertedProduct = convertProductFromFirebase(element);
-            if(convertedProduct != undefined) products.push(convertedProduct);
+            if (convertedProduct) products.push(convertedProduct);
         });
     }
 
-    return products;
-    
+    // Retornamos los productos junto con el último documento para la paginación
+    return { products, lastDoc: querySnapshot.docs[querySnapshot.docs.length - 1] };
 };
 
 export const addProduct = async (
@@ -90,7 +160,7 @@ export const addProduct = async (
       serializedProduct
     );
 
-    getProducts(productType)
+    //getProducts(productType)
 
 };
 

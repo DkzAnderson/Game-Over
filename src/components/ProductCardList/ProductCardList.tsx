@@ -7,23 +7,34 @@ import { MotherBoard } from "../../types/motherBoard";
 import { PowerSource } from "../../types/powerSource";
 import { GPU } from "../../types/gpu";
 import { Spinner } from "../Spinner/Spinner";
+import { fetchOrderProps } from "../../services/productService";
 
 interface Props {
     data: Array< MotherBoard | PowerSource | GPU >
+    setOrderType: Function;
+    currentOrder: fetchOrderProps;
+    loading: boolean;
+    setLoading: Function;
+
+}
+
+interface optionsProps {
+    value: fetchOrderProps;
+    label: string;
 }
 
 
-
-export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
+export const ProductCardList: React.FC< Props > = ({
+    data,setOrderType,
+    loading, setLoading
+}) => {
 
     const [isAList,setListType] = useState(true);
-    const [loading,setLoading] = useState(false);
-    const [sortedData, setSortedData] = useState(initialData);
-    
+
     const styles = {
         main: 'w-full',
         content: `w-full flex flex-col p-2`,
-        list: `w-full max-h-[70vh] grid ${isAList ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-5' : 'sm:grid-cols-2 md:grid-cols-3'} gap-2 pr-1 pb-2 overflow-auto text-gray-400 scroll`,
+        list: `w-full h-[68vh] grid ${isAList ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-5' : 'sm:grid-cols-2 md:grid-cols-3'} gap-2 pr-1 pb-2 overflow-auto text-gray-400 scroll`,
         header: {
             main: 'grid grid-cols-3 w-full bg-nd p-2 rounded-lg items-center  mb-2',
             typeSelector: 'text-white text-3xl rounded-lg overflow-hidden border-2 border-nd',
@@ -34,62 +45,29 @@ export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
         }
     }
 
-    const handleSelectChange = (value: string) => {
-        let sorted = [...initialData];
-
-        switch (value) {
-            case 'high-price':
-                // mayor precio
-                sorted = sorted.sort((a, b) => b.price - a.price); 
-                break;
-            case 'low-price':
-                // menor precio
-                sorted = sorted.sort((a,b)=> a.price - b.price);
-                break;
-            case 'name-asc':
-                // nombre en orden alfabético creciente
-                sorted = sorted.sort((a,b)=>
-                    a.title.localeCompare(b.title)
-                )
-                break;
-            case 'name-desc':
-                // nombre en orden alfabético decreciente
-                sorted = sorted.sort((a,b)=>
-                    b.title.localeCompare(a.title)
-                )
-                break;
-            default:
-                break;
-        }
-
-        setSortedData (sorted);
+    const handleSelectChange = (value: fetchOrderProps) => {
+        setOrderType(value);
     };
 
 
-    const options = [
+    const options: optionsProps[] = [
         {
-            value: '',
-            label: 'Relevancia'
-        },
-        {
-            value: 'high-price',
+            value: {type: 'price', order: 'desc'},
             label: 'Precio más alto'
         },
         {
-            value: 'low-price',
+            value: {type: 'price', order: 'asc'},
             label: 'Precio más bajo'
         },
         {
-            value: 'name-asc',
+            value: {type: 'title', order: 'asc'},
             label: 'Nombre, creciente'
         },
         {
-            value: 'name-desc',
+            value: {type: 'title', order: 'desc'},
             label: 'Nombre, decreciente'
         }
     ]
-
-
 
     useEffect(()=>{
         setTimeout(()=>setLoading(false),1000)
@@ -127,8 +105,8 @@ export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
     
                 </div>
     
-                <div className="w-full min-h-[70vh] flex items-center justify-center">
-                    <span className="">
+                <div className="w-full min-h-[68vh] flex items-center justify-center">
+                    <span className="scale-110">
                         <Spinner/>
                     </span>
 
@@ -170,7 +148,7 @@ export const ProductCardList: React.FC< Props > = ({data: initialData}) => {
                 </div>
 
                 <ul className={styles.list}>
-                    {sortedData.map((product, i) => (
+                    {data.map((product, i) => (
                         <li key={i}
                             className={' transition-all linear duration-500'}
                         >

@@ -172,27 +172,27 @@ export const NavBar = () => {
     const categories: category[] = [
         {
             name: 'Tarjetas madre',
-            url: '/products/motherboards',
+            url: '/products/mother_boards/1',
             values: [
                 {
                     name: 'Todas las marcas',
-                    url: '/products/motherboards'
+                    url: '/products/mother_boards/1'
                 },
                 {
                     name: 'ASUS',
-                    url: '/products/motherboards/asus'
+                    url: '/products/mother_boards/ASUS/1'
                 },
                 {
                     name: 'Gigabyte',
-                    url: '/products/motherboards/gigabyte'
+                    url: '/products/mother_boards/Gigabyte/1'
                 },
                 {
                     name: 'MSI',
-                    url:'/products/motherboards/msi'
+                    url:'/products/mother_boards/MSI/1'
                 },
                 {
                     name: 'Asrock',
-                    url: '/products/motherboards/asrock'
+                    url: '/products/mother_boards/AsRock/1'
                 },
 
 
@@ -200,42 +200,38 @@ export const NavBar = () => {
         },
         {
             name: 'Fuentes de poder',
-            url: '/products/powersources',
+            url: '/products/power_sources/1',
             values: [
                 {
                     name: 'Todas las marcas',
-                    url: '/products/powersources'
+                    url: '/products/power_sources/1'
                 },
                 {
                     name: 'EVGA',
-                    url: '/products/powersources/evga'
+                    url: '/products/power_sources/EVGA/1'
                 }
             ]
         },
         {
             name: 'Tarjetas gráficas',
-            url: '/products/graphiccards',
+            url: '/products/graphic_cards',
             values: [
                 {
                     name: 'Todas las marcas',
-                    url:'/products/graphicards'
+                    url:'/products/graphic_cards/1'
                 },
                 {
                     name: 'AsRock',
-                    url:'/products/graphicards/asrock'
+                    url:'/products/graphic_cards/AsRock/1'
                 },
                 {
                     name: 'ASUS',
-                    url:'/products/graphicards/asus'
+                    url:'/products/graphic_cards/ASUS/1'
                 },
                 {
                     name: 'Intel',
-                    url:'/products/graphicards/intel'
-                },
-                {
-                    name: 'Sapphire',
-                    url:'/products/graphicards/sapphire'
-                },
+                    url:'/products/graphic_cards/Intel/1'
+                }
             ]
         },
         {
