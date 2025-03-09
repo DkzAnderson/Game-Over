@@ -6,6 +6,8 @@ import { Processor } from "../types/processors";
 import { PowerSource } from "../types/powerSource";
 import { RamMemories } from "../types/ramMemories";
 
+let lastVisible = null;
+
 // Referencia a la colección de productos
 const productCollection = (col: string)=> collection(db,col);
 
@@ -48,7 +50,7 @@ function getProductType(product: GPU | MotherBoard | Processor | PowerSource | R
 }
 
 // Funciones para manejar los productos
-export const getProducts = async (productType: string) => {
+export const getProducts = async (productType: string,productsPerPage:number = 20) => {
     let products: Array<MotherBoard | GPU | PowerSource | Processor | RamMemories> = []
 
     const querySnapshot = await getDocs(productCollection(productType));

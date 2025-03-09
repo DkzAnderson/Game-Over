@@ -1,5 +1,3 @@
-import { Carrousel } from "../components/Carrousel/Carrousel"
-import { Fuentes } from "../Database"
 
 export const Home = () => {
 

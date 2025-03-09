@@ -237,6 +237,11 @@ export const NavBar = () => {
                     url:'/products/graphicards/sapphire'
                 },
             ]
+        },
+        {
+            name: 'Iniciar Sesión',
+            url: '/accounts/login',
+            values: []
         }
 
     ]

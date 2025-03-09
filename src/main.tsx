@@ -6,11 +6,15 @@ import App from './App.tsx'
 import { ToastContainer } from 'react-toastify';
 import { UserProvider } from './contexts/UserProvider.tsx'
 import { CartProvider } from './contexts/CartContext.tsx'
-import { RouterProvider, createHashRouter } from 'react-router-dom'; // Cambiado a createHashRouter
+import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom'; // Cambiado a createHashRouter
 import { ErrorPage } from './components/ErrorPage/ErrorPage.tsx'
 import { ProductDetail } from './components/ProductDetail/ProductDetail.tsx';
 import { Home } from './pages/Home.tsx';
 import { Lista } from './pages/Lista.tsx';
+import { LoginPage } from './pages/Login.tsx';
+import { Login } from './components/Login/Login.tsx';
+import { Register } from './components/Login/Register.tsx';
+import { ForgotPassword } from './components/Login/ForgotPassword.tsx';
 
 
 
@@ -105,14 +109,6 @@ const router = createHashRouter([
         element: <ProductDetail/>,
       },
       {
-        path: '/login',
-        element: ''
-      },
-      {
-        path: '/register',
-        element: ''
-      },
-      {
         path: '/account',
         element: '',
         children: [
@@ -152,6 +148,28 @@ const router = createHashRouter([
       }
     ]
   },
+  {
+    path: '/accounts',
+    element: <LoginPage/>,
+    children: [
+      {
+        index: true,
+        element: <Navigate to={'/accounts/login'} />
+      },
+      {
+        path: '/accounts/login',
+        element: <Login/>
+      },
+      {
+        path: '/accounts/register',
+        element: <Register/>
+      },
+      {
+        path: '/accounts/forgot-password',
+        element: <ForgotPassword/>
+      }
+    ]
+  }
 
 ])
 
