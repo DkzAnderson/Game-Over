@@ -10,10 +10,10 @@ interface PaginationProps {
 export const Pagination: React.FC<PaginationProps> = ({ pageCount, onPageChange, forcePage }) => {
     
     const styles = {
-        main: 'flex gap-2 size-full items-center justify-center font-roboto',
+        main: 'flex gap-2 w-full justify-center pt-2 font-roboto',
         general: 'size-10 bg-nd rounded text-white cursor-pointer',
-        buttons: 'size-full flex items-center justify-center hover:bg-rd hover:text-black hover:rounded duration-500',
-        active: ' bg-th text-black font-bold duration-500',
+        buttons: 'size-full flex items-center justify-center  hover:bg-rd hover:text-black rounded active:bg-th duration-500',
+        active: 'border-2 border-rd font-bold duration-500',
     }
     
     

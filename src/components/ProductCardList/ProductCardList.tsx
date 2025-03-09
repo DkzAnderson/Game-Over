@@ -32,12 +32,12 @@ export const ProductCardList: React.FC< Props > = ({
     const [isAList,setListType] = useState(true);
 
     const styles = {
-        main: 'w-full',
+        main: 'w-full h-full flex',
         content: `w-full flex flex-col p-2`,
-        list: `w-full h-[68vh] grid ${isAList ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-5' : 'sm:grid-cols-2 md:grid-cols-3'} gap-2 pr-1 pb-2 overflow-auto text-gray-400 scroll`,
+        list: `w-full h-full grid ${isAList ? ' grid-cols-2 sm:grid-cols-3 md:grid-cols-5' : 'items-start sm:grid-cols-2 md:grid-cols-3'} gap-2 pr-1 pb-2 overflow-auto scroll`,
         header: {
-            main: 'grid grid-cols-3 w-full bg-nd p-2 rounded-lg items-center  mb-2',
-            typeSelector: 'text-white text-3xl rounded-lg overflow-hidden border-2 border-nd',
+            main: 'h-16 grid grid-cols-3 w-full bg-nd p-2 rounded-lg items-center  mb-2',
+            typeSelector: 'text-white text-xl rounded-lg overflow-hidden border-2 border-nd',
             listBtn: `p-2 ${isAList ? 'bg-rd text-st rounded-l-lg' : 'bg-st text-gray-400'}`,
             mosaicBtn: `p-2 ${isAList ? 'bg-st text-gray-400' : 'bg-rd text-st  rounded-r-lg'}`,
             mosaicBtnBox: 'w-full flex justify-end',
@@ -133,13 +133,13 @@ export const ProductCardList: React.FC< Props > = ({
                                 className={styles.header.listBtn}
                                 onClick={() => setListType(true)}
                             >
-                                <LuLayoutList />
+                                <BiSolidCategory />
                             </button>
                             <button
                                 className={styles.header.mosaicBtn}
                                 onClick={() => setListType(false)}
                             >
-                                <BiSolidCategory />
+                                <LuLayoutList />
                             </button>
                         </span>
                     </div>
@@ -147,11 +147,12 @@ export const ProductCardList: React.FC< Props > = ({
 
                 </div>
 
-                <ul className={styles.list}>
+                <ul 
+                    className={styles.list}
+                    style={{ gridAutoRows: 'max-content' }}
+                >
                     {data.map((product, i) => (
-                        <li key={i}
-                            className={' transition-all linear duration-500'}
-                        >
+                        <li key={i}>
                             <ProductCard
                                 data={product}
                                 list={isAList}

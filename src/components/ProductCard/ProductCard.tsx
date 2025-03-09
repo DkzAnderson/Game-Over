@@ -27,26 +27,26 @@ export const ProductCard: React.FC<Item> = ({data,list}) => {
         dataBox: 'flex flex-col pt-2 pl-2 justify-between',
         titleBox: 'flex flex-col',
         brand: 'text-sm text-gray-400',
-        title: 'text-white font-bold',
+        title: 'text-white font-bold text-sm w-11/12',
         price: 'text-rd text-end font-bold text-lg mr-2',
         priceAfterDiscount: '',
         offer: '',
     }
 
     const mosaicStyle ={
-        main: 'w-full h-64',
+        main: 'w-full h-58',
         content: 'size-full product-card-2 relative bg-nd rounded-lg p-1',
-        imageBox: 'size-full product-image bg-white overflow-hidden rounded flex items-center justify-center',
+        imageBox: 'size-full p-1 product-image bg-white overflow-hidden rounded flex items-center justify-center',
         image: 'size-full object-contain',
         dataBox: 'flex flex-col justify-between',
         titleBox: 'flex flex-col overflow-hidden max-h-20',
-        brand:'font-bold text-sm',
-        title: 'max-w-full text-white text-lg font-bold leading-6 overflow-hidden max-h-12',
+        brand:'font-bold text-[12px] text-gray-400',
+        title: 'max-w-full text-white font-bold leading-6 overflow-hidden max-h-12',
         offer: {
             main: '',
             txt: ''
         },
-        price: 'text-end text-lg font-bold text-rd',
+        price: 'text-end font-bold text-rd',
         priceAfterDiscount: '',
         discount: '',
         

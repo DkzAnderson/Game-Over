@@ -8,9 +8,9 @@ function App() {
 
 
   return (
-    <main className={`min-h-screen font-roboto bg-st flex flex-col items-center`}>
-      <div className='flex w-full max-w-screen overflow-hidden min-h-[50vh] pt-22 '>
-      <NavBar/>
+    <main className={`font-roboto bg-st flex flex-col items-center`}>
+      <div className='flex w-full max-w-dvw min-h-dvh'>
+        <NavBar/>
         <Outlet/>
       </div>
       {/* Agregar footer */}

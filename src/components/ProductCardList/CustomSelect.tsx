@@ -27,13 +27,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, onChange, placehol
   };
 
   return (
-    <div className="relative inline-block w-full">
-      <div className="bg-rd h-12 flex items-center justify-between border border-rd rounded-lg p-2 cursor-pointer" 
+    <div className="relative inline-block w-full h-10">
+      <div className="bg-rd h-full flex items-center justify-between border border-rd rounded-lg p-2 cursor-pointer" 
         onClick={() => setIsOpen(!isOpen)}>
-        <h1 className='text-st font-bold'>
+        <h1 className='text-st font-bold text-sm'>
             {selectedOption ? selectedOption.label : placeholder}
         </h1>
-        <h1 className='text-3xl text-card-bg text-nd'>
+        <h1 className='text-xl text-card-bg text-nd'>
             <HiArrowsUpDown />
         </h1>
       </div>

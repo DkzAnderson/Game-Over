@@ -66,7 +66,7 @@ export const Lista = () => {
 
     if (productList.length > 0) {
         return (
-            <div className="w-full grid grid-rows-[90%_10%] gap-y-4 h-full border">
+            <div className="w-full grid grid-rows-[85%_10%] h-dvh pt-22">
                 <ProductCardList
                     data={productList}
                     setOrderType={setOrderType}
@@ -85,7 +85,7 @@ export const Lista = () => {
 
     return (
         <div className='w-full min-h-[80vh] flex items-center justify-center'>
-            <p>No products found.</p>
+            <p className="text-white">No products found.</p>
         </div>
     );
 };
